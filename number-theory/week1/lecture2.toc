@@ -1,0 +1,8 @@
+\beamer@endinputifotherversion {3.10pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Proof of the Division Algorithm}{3}{0}{1}
+\beamer@sectionintoc {2}{Greatest Common Divisor}{6}{0}{2}
+\beamer@subsectionintoc {2}{1}{Definition, Existence}{6}{0}{2}
+\beamer@subsectionintoc {2}{2}{M\'eziriac-B\'ezout Identity}{15}{0}{2}
+\beamer@subsectionintoc {2}{3}{How dividing and multiplying effects GCDs}{20}{0}{2}
+\beamer@subsectionintoc {2}{4}{How addition effects GCDs}{27}{0}{2}

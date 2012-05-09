@@ -1,0 +1,325 @@
+% $Header: /cvsroot/latex-beamer/latex-beamer/solutions/generic-talks/generic-ornate-15min-45min.en.tex,v 1.5 2007/01/28 20:48:23 tantau Exp $
+
+\documentclass{beamer}
+
+% This file is a solution template for:
+
+% - Giving a talk on some subject.
+% - The talk is between 15min and 45min long.
+% - Style is ornate.
+
+
+
+% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+%
+% In principle, this file can be redistributed and/or modified under
+% the terms of the GNU Public License, version 2.
+%
+% However, this file is supposed to be a template to be modified
+% for your own needs. For this reason, if you use this file as a
+% template and not specifically distribute it as part of a another
+% package/program, I grant the extra permission to freely copy and
+% modify this file as you see fit and even to delete this copyright
+% notice. 
+
+
+\mode<presentation>
+{
+  \usetheme{Warsaw}
+  % or ...
+
+  \setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+}
+
+
+\usepackage[english]{babel}
+% or whatever
+
+\usepackage[latin1]{inputenc}
+% or whatever
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+
+\title[Division Algorithm] % (optional, use only with long paper titles)
+{1.2: Induction and the Division Algorithm}
+
+%\subtitle
+%{Presentation Subtitle} % (optional)
+
+%\author[Author, Another] % (optional, use only with lots of authors)
+%{F.~Author\inst{1} \and S.~Another\inst{2}}
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+%\institute[Universities of Somewhere and Elsewhere] % (optional, but mostly needed)
+%{
+%  \inst{1}%
+%  Department of Computer Science\\
+%  University of Somewhere
+%  \and
+%  \inst{2}%
+%  Department of Theoretical Philosophy\\
+%  University of Elsewhere}
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+%\date[Short Occasion] % (optional)
+%{Date / Occasion}
+
+\subject{Talks}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+
+
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+
+% \pgfdeclareimage[height=0.5cm]{university-logo}{university-logo-filename}
+% \logo{\pgfuseimage{university-logo}}
+
+
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+
+%\beamerdefaultoverlayspecification{<+->}
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+  \tableofcontents
+  % You might wish to add the option [pausesections]
+\end{frame}
+
+
+% Since this a solution template for a generic talk, very little can
+% be said about how it should be structured. However, the talk length
+% of between 15min and 45min and the theme suggest that you stick to
+% the following rules:  
+
+% - Exactly two or three sections (other than the summary).
+% - At *most* three subsections per section.
+% - Talk about 30s to 2min per frame. So there should be between about
+%   15 and 30 frames, all told.
+
+\section{Induction}
+
+\begin{frame}{Induction overview}
+  % - A title should summarize the slide in an understandable fashion
+  %   for anyone how does not follow everything on the slide itself.
+
+  In induction we will cover:
+  \begin{itemize}
+  \item When to use induction
+  \item What is induction
+  \item Examples
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{When to use Induction}
+  Induction:
+  \begin{itemize}
+  \item Used to prove incrementally.
+  \item Useful when a fact is parameterizable by an integer.
+  \item Often used to prove formula for sums.
+  \item Can also be used to prove facts about integers of a certain
+    form.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{What is induction}
+  \begin{itemize}
+  \item Is a fundamental fact of the natural numbers.
+  \item Statement: If $S$ is a set and 
+    \begin{itemize}
+    \item $0 \in S$
+    \item $n \in S$ implies $n + 1 \in S$.
+    \end{itemize}
+    then $S$ is all natural numbers.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Induction Example}
+  Prove $\sum_{k=0}^n k = {n+1 \choose 2}$
+  \begin{itemize}
+  \item for $n = 1$, $1 = {2 \choose 2} = 1$
+  \item $$\sum_{k=0}^{n+1} k = \sum_{k=0}^n k + n+1$$
+    $$= {n+1 \choose 2} + n+1$$
+    $$=\frac{n^2 + 3n + 2}{2}$$
+    $$=\frac{(n+2)(n+1)}{2}$$
+    $$={n+2 \choose 2}.$$
+  \end{itemize}
+\end{frame}
+    
+
+\section{Divisibility}
+
+\begin{frame}{Overview}
+  \begin{itemize}
+  \item Definition: What is divisibility?
+  \item Some notational examples
+  \item The division algorithm
+  \end{itemize}
+\end{frame}
+
+\subsection{What is divisibility?}
+
+\begin{frame}{Definition}
+An integer $b$ is divisible by an integer $a$, not zero, if there is
+an integer $x$ such that $b = ax$, and we write $a | b$. 
+\end{frame}
+
+\begin{frame}{Examples}
+  \begin{itemize}
+  \item $1 | x$ for all $x$
+  \item $-1 | x$ for all $x$
+  \item $x | 0$ for all $x \ne 0$.
+  \item $a | \pm ab$ for all $b$ and $a \ne 0$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Proper Divisor}
+  If $a|b$ and $0 < a < b$ then $a$ is a proper divisor of $b$.
+  \begin{itemize}
+  \item $12$ has $1, 2, 3, 4, 6$ as proper divisors.
+  \item $1$ has no proper divisors.
+  \end{itemize}
+\end{frame}
+
+\subsection{Some Notational Examples}
+
+\begin{frame}{Arbitrary constants}
+
+  $$a|b \implies a|bc \mbox{ for all integer } c.$$
+  
+  Thus if $a$ divides $b$, we can add whatever factors we want to $b$
+  and $a$ will still divide it.
+
+  $$3 | 6 \implies 3|12, 3|18, 3|24, \ldots$$
+\end{frame}
+
+\begin{frame}{Proof}
+  
+  $$a|b \implies b = ax$$
+  $$cb = cax = (cx)a$$
+  $$a | bc$$
+
+\end{frame}
+
+\begin{frame}{Transitivity}
+  $$a|b, b|c \implies a|c$$
+  
+  This is the often known transitivitity.
+
+  \begin{itemize}
+  \item Note $b \ne 0$ (since 0 divides nothing).
+  \item Otherwise, since $x|0$ for all $0$, we could have $x|0$, $0|y$
+    and thus $x|y$ for all $x$ and $y$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Proof}
+  $$a|b, b|c \implies b = ax, c = by$$
+  $$c = by = axy = a(xy)$$
+  $$a | c$$
+\end{frame}
+
+\begin{frame}{Linear Combinations}
+
+  $$a|b, a|c \implies a|(bn+cm)$$
+
+  Thus $a$ divides the lattice generated by $b$ and $c$. Hence we can
+  picture this with some geometry if we wanted.
+\end{frame}
+
+\begin{frame}{Proof}
+  $$a|b, a|c \implies b = ax, c = ay$$
+  $$bn = a(xn), cm = a(ym)$$
+  $$bn+cm = a(xn+ym)$$
+  $$a | (bn + cm)$$
+\end{frame}
+
+\begin{frame}{Trivialities}
+
+  $$a|b, b|a \implies a = \pm b$$
+  $$a|b, a> 0, b>0, \implies a \le b$$
+  
+\end{frame}
+
+\begin{frame}{Proof}
+  $$a|b \implies b = ax$$
+  $$b|a \implies a = by$$
+  $$a = by = axy$$
+  $$1 = xy$$
+  Since $x$ $y$ are integers, then $x, y = \pm 1$.
+\end{frame}
+  
+\begin{frame}{Multiplicative constants}
+  $$m \ne 0, a|b \implies ma | mb$$
+  
+  Thus by adding the same factors to both sides, we preserve
+  divisibility. (Golden Rule?)
+
+\end{frame}
+
+\begin{frame}{Proof}
+  $$a|b \implies b = ax$$
+  $$mb =max$$
+  $$ma | mb$$
+\end{frame}
+
+\subsection{The Division Algorithm}
+
+\begin{frame}{Statement}
+
+Given integers $a$, $b$, with $a > 0$, there exist unique integers $q$
+and $r$ such that $b = qa + r$, $0 \le r < a$.
+
+$$25 = 7 \cdot 3 + 4$$
+\end{frame}
+
+\begin{frame}
+Notice that only certain $r$s are possible, and they are unique.
+
+$$a = 4, r = 0, 1, \ldots, 3$$
+
+\begin{center}
+  \begin{tabular}{c|c}
+    b & r \\
+    \hline
+    0 & 0 \\
+    1 & 1 \\
+    2 & 2 \\
+    3 & 3 \\
+    4 & 0 \\
+    5 & 1 \\
+    6 & 2 \\
+  \end{tabular}
+\end{center}
+\end{frame}
+
+\end{document}
+
+

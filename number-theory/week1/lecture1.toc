@@ -1,0 +1,7 @@
+\beamer@endinputifotherversion {3.10pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Induction}{3}{0}{1}
+\beamer@sectionintoc {2}{Divisibility}{7}{0}{2}
+\beamer@subsectionintoc {2}{1}{What is divisibility?}{8}{0}{2}
+\beamer@subsectionintoc {2}{2}{Some Notational Examples}{12}{0}{2}
+\beamer@subsectionintoc {2}{3}{The Division Algorithm}{23}{0}{2}

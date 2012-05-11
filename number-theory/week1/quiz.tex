@@ -1,4 +1,5 @@
 \documentclass{exam}
+\usepackage{amssymb} % for \nmid
 
 \title{Quiz 1}
 
@@ -24,6 +25,20 @@
 
 
   \question[5]  State the M\'eziriac-B\'ezout identity.
+
+    % Niven/et. al. 1.2.11
+    \question[8] Prove that $4 \nmid (n^2 + 2)$ for any integer $n$.
+    \begin{solution}
+        Using the division algorithm write $n = 4q + r$ where $0 \le r
+        < 4.$ Then 
+        $$n^2 + 2 = 16q^2 + 8qr + r^2 + 2$$
+        $$ = 4(4q^2 + 2qr) + r^2 + 2.$$
+        Examining possibilities for $r$ we see that the possibilities
+        for $r^2 + 2$ are: 2, 3, 6 and 11. If $n^2 + 2$ were divisible
+        by 4, then by the linear combination rule of divisbility, we'd
+        have that $n^2 +2 - 4(4q^2 + 2qr) = r^2 + 2$ were divisible by
+        4. However, by exhaustion 2, 3, 6, and 11 are not. 
+    \end{solution}
 
 
 \end{questions}

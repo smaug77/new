@@ -1,0 +1,181 @@
+\include{template}
+
+\begin{document}
+
+%\printanswers
+
+\title{575 Homework 1 Part I}
+\maketitle
+
+This section has \numpoints\ points.
+
+\section{Lecture 1}
+
+
+\begin{questions}
+    \question[5] Prove that, for all positive integers $n$,
+        $$1^3 + 2^3 + \cdots + n^3 = \frac{n^2(n+1)^2}{4}.$$
+    \begin{solution}
+        Base case: $1^3 = \frac{1^2(2)^2}{4} = 1$.
+
+        Induction Step: 
+        $$\sum_{k=1}^{n+1} k^3 = (n+1)^3 + \sum_{k=1}^n k^3$$
+        $$  (n+1)^3 + \frac{n^2(n+1)^2}{4}
+          = \frac{ 4(n+1)^3 + n^2(n+1)^2 }{4}$$
+        $$ = \frac{ (n+1)^2 ( 4(n+1) + n^2 ) }{4}
+           = \frac{ (n+1)^2 (n+2)^2 }{4}.$$        
+    \end{solution}
+
+    \question (\totalpoints\ points)
+        \begin{parts}
+            \part[10] Use mathematical induction to show that
+                $$\frac{1}{1^2} + \frac{1}{2^2} + \frac{1}{3^2} + \cdots +
+                  \frac{1}{n^2} \le 2 - \frac{1}{n}.$$
+                Note how a straightforward induction on $n$ would not suffice
+                to prove a {\it weaker} claim that $\frac{1}{1^2} + 
+                \frac{1}{2^2} + \frac{1}{3^2}
+                  + \cdots+ \frac{1}{n^2} \le 2$. It can be shown that
+                  this sum is equal to $\frac{\pi^2}{6} \approx 1.6449.$
+            \begin{solution}
+               Base Case: 
+               $$\frac{1}{1^2} = 1 = 2 - \frac{1}{1}$$
+
+               Induction Step:
+               $$\sum_{k=1}^n \frac{1}{n^2} \le 2 - \frac{1}{n}$$
+               $$\sum_{k=1}^n + \frac{1}{(n+1)^2}\le 2 - \frac{1}{n}
+                 + \frac{1}{(n+1)^2}$$
+               $$ = 2 + \frac{-(n+1)^2 + n}{n(n+1)^2}
+                  = 2 + \frac{-n^2 - n -1}{n(n+1)^2}$$
+               $$ \le 2 + \frac{-n^2 - n}{n(n+1)^2}
+                   = 2 - \frac{n(n+1)}{n(n+1)^2}$$
+               $$ = 2 - \frac{1}{n+1}.$$
+            \end{solution}
+            \part[20] Use mathematical induction to prove that 
+                $$\frac{1}{1^2} + \frac{1}{2^2} + \frac{1}{3^2} + \cdots +
+                  \frac{1}{n^2} \le 1.674.$$
+            \begin{solution}
+                We prove that the sum is less than $1.674
+                  - \frac{1}{n}$ then taking limits we get the result.
+
+               Base case:
+               Note that for $n = 4$:
+               $$1 + \frac{1}{4} + \frac{1}{9} + \frac{1}{16} \le
+               1.674 - \frac{1}{4}.$$1               
+
+               Induction Step:
+               $$\sum_{k=1}^n \frac{1}{n^2} \le 1.674 - \frac{1}{n}$$
+               $$\sum_{k=1}^n + \frac{1}{(n+1)^2}\le 1.674 - \frac{1}{n}
+                 + \frac{1}{(n+1)^2}$$
+               $$ = 1.674 + \frac{-(n+1)^2 + n}{n(n+1)^2}
+                  = 1.674 + \frac{-n^2 - n -1}{n(n+1)^2}$$
+               $$ \le 1.674 + \frac{-n^2 - n}{n(n+1)^2}
+                   = 1.674 - \frac{n(n+1)}{n(n+1)^2}$$
+               $$ = 1.674 - \frac{1}{n+1}.$$
+                                
+            \end{solution}
+        \end{parts}
+
+    \question  (\totalpoints\ points)
+
+        \begin{parts}
+            \part[5] What is wrong with the following ``proof'' by induction
+                  that all fire engines are the same color (e.g. red)?
+
+                  {\bf ``Proof.''} We prove that any $n$ fire engines
+                  are the same color by induction on $n$. For $n = 1$,
+                  there is one fire engine and the claim is
+                  obvious. Now for the inductive step. Suppose that
+                  any $n$ fire engiens are the same and let us prove
+                  that any $n + 1$ fire engines are the same
+                  color. Well, let us arrange the $n + 1$ fire engines
+                  in a straight line. By induction hypothesis, the
+                  first $n$ fire engines are the same color, and so
+                  are the last $n$. It follows that all fire engines
+                  are the same color as the middle ones, hence all $n
+                  + 1$ fire engines are the same color. This completes
+                  the induction step.
+
+            \begin{solution}
+                There may be no middle. When $n$ equals two the first 1 and
+                last 1 means no middle.
+            \end{solution}
+
+            \part[10] What follows is an alleged proof of the following
+            theorem: ``Let $A$ be an $n \times n$ matrix whose all
+            entries are non-negative integers, such that for any zero
+            entry, the sum of entries in the row and the column
+            containing that zero is at least $n$. Then the sum of all
+            elements $A$ is at least $n^2/2$.'' What is wrong with it?
+
+            {\bf ``Proof.''} The result holds for $n = 1$. Assume it
+            holds for $(n - 1) \times (n - 1)$ matrices and let $A$ be
+            an $n \times n$ matrix as described. If there are no zero
+            entries, the result is clear. Suppose that $a_{ij} = 0$
+            for some $1 \le i, j \le n$. The sum of elements in the
+            $i$th row and the $j$th column is at least $n$. By the
+            induction hypothesis the sum of the entries in the
+            remaining $(n - 1) \times (n - 1)$ submatrix is at least
+            $(n-1)^2/2$. And so the sum of all entries of $A$ is at
+            least $$\frac{(n-1)^2}{2} + n = \frac{n^2 + 1}{2}
+            > \frac{n^2}{2},$$ completing the induction.
+
+            \begin{solution}
+                We don't know that the we can apply the induction
+                hypothesis to the submatrix. There may not be even a
+                zero entry!
+            \end{solution}
+        \end{parts}
+
+    \question  (\totalpoints\ points)
+        \begin{parts}
+            \part[10] Show that $\sqrt{6}$ is irrational using infinite
+                  descent.
+            \begin{solution}
+                Suppose that $\sqrt{6}$ were rational. Then it could
+                be written as $$\sqrt{6} = \frac{p}{q}$$ for two
+                natural numbers, $p$ and $q$. Then squaring would give
+                $$6 = \frac{p^2}{q^2}.$$ $$6q^2 = p^2,$$ so $$6 |
+                p^2.$$ This implies that $$6 | p,$$ which means that 6
+                divides $p$. 
+
+                Thus we can write $p = 6r$, thus $$6q^2 = (6r)^2 =
+                36r^2,$$ $$q^2 = 6r^2,$$ so $$6 | q^2$$ and $$6 | q.$$
+                
+                Therefore both both $p$ and $q$ smaller natural
+                numbers exist which can be found by dividing by
+                $6$. The same must hold for the smaller numbers, ad
+                infinitum. However this is impossible in the set of
+                natural numbers. Thus $\sqrt{6}$ cannot be rational.
+                
+            \end{solution}
+
+            \part[5] Try using the same approach to prove that $\sqrt{9}$
+                  is irrational. Where does it fail?
+            \begin{solution}
+                $9 | p^2$ does not imply $9 | p$.
+            \end{solution}
+
+            \part[15] One can prove that $\sqrt{n}$ is irrational unless $n
+                  = m^2$ for some positive integer $m$ (we say that
+                  $n$ is a perfect square). Assuming this, prove that
+                  $\sqrt{n_1} + \sqrt{n_2}$ is irrational unless both
+                  $n_i$ are perfect squares.
+            \begin{solution}
+                Suppose that the sume is rational, and 
+                $$\sqrt{n_1} + \sqrt{n_2} = \frac{p}{q}$$
+                where $p$ and $q$ are relatively prime. Then 
+                $$\sqrt{n_1} = \frac{p}{q} - \sqrt{n_2}$$
+                $$q\sqrt{n_1} = p - q\sqrt{n_2}$$
+                Suppose, without loss of generality, that $n_1$ is not
+                a perfect square, but $n_2$ is, $n_2 = m^2.$
+                $$q\sqrt{n_1} = p - qm.$$
+                $$q^2n_1 = (p - qm)^2.$$
+                Since the right side is a perfect square, and $q^2$
+                is, then $n_1$ is a perfect square. Contradiction!
+            \end{solution}
+        \end{parts}
+
+
+\end{questions}
+
+\end{document}

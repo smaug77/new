@@ -1,0 +1,409 @@
+% $Header: /cvsroot/latex-beamer/latex-beamer/solutions/generic-talks/generic-ornate-15min-45min.en.tex,v 1.5 2007/01/28 20:48:23 tantau Exp $
+
+\documentclass{beamer}
+
+% This file is a solution template for:
+
+% - Giving a talk on some subject.
+% - The talk is between 15min and 45min long.
+% - Style is ornate.
+
+
+
+% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+%
+% In principle, this file can be redistributed and/or modified under
+% the terms of the GNU Public License, version 2.
+%
+% However, this file is supposed to be a template to be modified
+% for your own needs. For this reason, if you use this file as a
+% template and not specifically distribute it as part of a another
+% package/program, I grant the extra permission to freely copy and
+% modify this file as you see fit and even to delete this copyright
+% notice. 
+
+
+\mode<presentation>
+{
+  \usetheme{Warsaw}
+  % or ...
+
+  \setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+}
+
+
+\usepackage[english]{babel}
+% or whatever
+
+\usepackage[latin1]{inputenc}
+% or whatever
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+\usepackage{amsthm} % for proof environment
+\newtheorem{algorithm}[theorem]{Algorithm}
+
+\title[Euclidean Algorithm] % (optional, use only with long paper titles)
+{1.2: The Euclidean Algorithm; 1.3: The fundamental theorem of
+  Arithmetic}
+
+
+%\subtitle
+%{Presentation Subtitle} % (optional)
+
+%\author[Author, Another] % (optional, use only with lots of authors)
+%{F.~Author\inst{1} \and S.~Another\inst{2}}
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+%\institute[Universities of Somewhere and Elsewhere] % (optional, but mostly needed)
+%{
+%  \inst{1}%
+%  Department of Computer Science\\
+%  University of Somewhere
+%  \and
+%  \inst{2}%
+%  Department of Theoretical Philosophy\\
+%  University of Elsewhere}
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+%\date[Short Occasion] % (optional)
+%{Date / Occasion}
+
+\subject{Talks}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+
+
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+
+% \pgfdeclareimage[height=0.5cm]{university-logo}{university-logo-filename}
+% \logo{\pgfuseimage{university-logo}}
+
+
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+
+%\beamerdefaultoverlayspecification{<+->}
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+  \tableofcontents
+  % You might wish to add the option [pausesections]
+\end{frame}
+
+
+% Since this a solution template for a generic talk, very little can
+% be said about how it should be structured. However, the talk length
+% of between 15min and 45min and the theme suggest that you stick to
+% the following rules:  
+
+% - Exactly two or three sections (other than the summary).
+% - At *most* three subsections per section.
+% - Talk about 30s to 2min per frame. So there should be between about
+%   15 and 30 frames, all told.
+
+\section{The Euclidean Algorithm}
+
+\begin{frame}{Reduction by addition}
+  % - A title should summarize the slide in an understandable fashion
+  %   for anyone how does not follow everything on the slide itself.
+
+  Recall from the previous lecture that $(x, y) = (x + ky)$.
+  
+  $$(963, 657) = (657, 963 - 657) = (657, 306)$$
+  $$(306, 657 - 2 \cdot 306) = (306, 45)$$
+  $$(306, 45) = (45, 306 - 6\cdot 45) = (36, 45) = 9$$
+
+\end{frame}
+
+\begin{frame}{The Euclidean algorithm}
+  
+\begin{algorithm}
+  Given integers $b$ and $c > 0$ obtain a series of equations via the
+  division algorithm:
+  $$b = cq_1 + r_1$$
+  $$c = r_1q_1 + r_2$$
+  $$r_1 = r_2q_3 + r_3$$
+  $$...$$
+  $$r_{j - 2} = r_{j -1}q_j + r_j$$
+  $$r_{j-1} = r_jq_{j+1}$$
+  Then $(b, c) = r_j$.
+\end{algorithm}
+
+\end{frame}
+
+\begin{frame}{Proof}
+  The equalities are just applications of the division algorithm. 
+
+  The fact that $r_j$ is the gcd is just an application of the
+  addition theorem from lecture 2.
+
+\end{frame}
+
+\begin{frame}{Example 2}
+
+  $$(42823, 6409) = (6409, 42823 - 6 \cdot 6409) = (6409, 4369)$$
+  $$(4369, 6409) = (4369, 6409 - 4369) = (4369, 2040)$$
+  $$(4369, 2040) = (2040, 4369 - 4080) = (2040, 289)$$
+  $$(289, 2040 - 7 \cdot 289) = (289, 17)$$
+  $$(17, 289 - 17 \cdot 17) = (17, 0)$$
+  Thus the gcd is 17.
+\end{frame}
+
+\begin{frame}{How to get the B\'ezout coefficients}
+  For $a < b$ we do a reduction by subtracting a multiple of $b$ by $q = \frac{b}{a}$.
+
+  $$\begin{pmatrix} a & b \end{pmatrix} \cdot \begin{pmatrix}0 & 1 \\
+    1 & -q \end{pmatrix} = \begin{pmatrix} b & a - qb \end{pmatrix}$$
+
+  So we just need to accumulate $\begin{pmatrix}0 & 1 \\
+    1 & -q \end{pmatrix}$ matrices.
+\end{frame}
+
+\begin{frame}{Example 2 redux}
+  
+  $$\begin{pmatrix} 42823 & 6409 \end{pmatrix} \cdot \begin{pmatrix}0 & 1 \\
+    1 & -6 \end{pmatrix} = \begin{pmatrix} 6409 & 4369 \end{pmatrix}$$
+  $$\begin{pmatrix} 42823 & 6409 \end{pmatrix} \cdot \begin{pmatrix}0 & 1 \\
+    1 & -6 \end{pmatrix} \begin{pmatrix}  0 & 1 \\ 1 & -1 \end{pmatrix}
+  = \begin{pmatrix} 1 & -1 \\ -6 & 7 \end{pmatrix} = \begin{pmatrix}
+    4369 & 2040 \end{pmatrix}$$
+  $$\begin{pmatrix} 42823 & 6409 \end{pmatrix} \cdot \begin{pmatrix}1 & -1 \\
+    -6 & 7 \end{pmatrix} \begin{pmatrix}  0 & 1 \\ 1 & -2 \end{pmatrix}
+  = \begin{pmatrix} -1 & 3 \\  7 & -20 \end{pmatrix} = \begin{pmatrix}
+    2040 & 289 \end{pmatrix}$$
+  $$\begin{pmatrix} 42823 & 6409 \end{pmatrix} \cdot \begin{pmatrix}-1 & 3 \\
+    7 & -20 \end{pmatrix} \begin{pmatrix}  0 & 1 \\ 1 & -7 \end{pmatrix}
+  = \begin{pmatrix} 3 & -22 \\  -20 & 147 \end{pmatrix} = \begin{pmatrix}
+    289 & 17 \end{pmatrix}$$
+  $$-22 \cdot 42823 + 147 \cdot 6409 = 17$$
+  
+\end{frame}
+  
+\section{Common Multiples}
+\begin{frame}{Definition}
+  \begin{definition}
+    The non-zero integers $a_1, a_2, \ldots, a_n$ have a common
+    multiple $b$ if $a_i | b$ for all $i$.  The least common
+    (positive) multiple is denote by $[a_1, a_2, \ldots, a_n]$.
+  \end{definition}
+
+  Examples:
+  $$[6, 4, 9] = 36$$
+  $$[4, 9] = 36$$
+
+\end{frame}
+
+\begin{frame}{Basic Theorem}
+
+  \begin{theorem}
+    If $b$ is a common multiple of a set of non-zero $a_i$ then $b$ is
+    divisible by the least common multiple of that set. 
+  \end{theorem}
+  
+  Example: Common multiples of $[6, 4, 9] = \pm 36, \pm 72, \pm 108,
+  \ldots$.
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+  Let $m$ be a common muliple and $h$ the l.c.m. Then apply the
+  division algorithm to get:
+  $$m = qh + r$$
+  If $r \ne 0$ then note $a_i | h$ and $a_i | m$ so $a_i | r$. Thus r
+  is a positive common multiple of the $a_i$ which is less than $h$. Hence $r$
+  is zero.
+
+\end{frame}
+
+\begin{frame}{Proof Outline}
+  
+  \begin{enumerate}
+  \item Choose the smallest (positive) $\mathbb{Z}$-linear
+    combination, $l$.
+  \item Prove that $l$ is a common divisor using the division
+    algorithm and proof by contradiction (using the choice of $l$).
+  \item Note that a common divisor divides any $\mathbb{Z}$-linear
+    combination, thus $g | l$.  Conclude the theorem.
+  \end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Step 2}
+
+  (Step 1 and 3 being easy).
+  
+  \begin{itemize}
+  \item Without loss of generality, only prove $l | b$.
+  \item Assume $l$ does not divide $b$.
+  \item Division algorithm gives $r > 0$ such that $r = b - lq$.
+  \item $b - lq = b(1 - qx_0) + c(-qy_0)$ so $r$ is in the set $l$ is
+    chosen from.
+  \item Thus $r > l$. This contradicts the choice of $r$ from the
+    division algorithm.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Consequence}
+
+  We could have defined GCD this way:
+  \begin{theorem} The greatest common divisor of $b$ and $c$ is the
+    least positive $\mathbb{Z}$-linear combination of $b$ and $c$.
+  \end{theorem}
+  
+  Or this way:
+  \begin{theorem} The greatest common divisor of $b$ and $c$ is the
+    positive common divisor  that is divisible by every other common
+    divisor.
+  \end{theorem}
+
+\end{frame}
+
+\subsection{How dividing and multiplying effects GCDs}
+
+\begin{frame}{Common factors}
+
+  \begin{theorem} For any positive integer $m$, 
+    $$(ma, mb) = m(a, b)$$
+  \end{theorem}
+  
+  \begin{proof}
+    $(ma, mb)$ is the least positive value of $max+mby$, which is the
+    same as the least positive value of $ax+by$ times $m$.
+  \end{proof}
+  
+\end{frame}
+
+\begin{frame}{Common factors}
+
+  \begin{theorem}
+    If $d | a$ and $d | b$ and $d > 0$ then 
+    $$(\frac{a}{d}, \frac{b}{d}) = \frac{1}{d}(a, b)$$
+  \end{theorem}
+
+This is just a restatement of the previous statement.
+
+\end{frame}
+
+\begin{frame}{What do these common factor statements mean?}
+
+  What we are really saying is, by definition:
+  $$g = (a, b)$$
+  
+  $$( \frac{a}{g}, \frac{b}{g} ) = 1$$
+
+  i.e. dividing doesn't do something non-atomic.
+
+\end{frame}
+
+\begin{frame}{Relatively prime pairs}
+
+  If both $a$ and $b$ are relatively prime to $m$, so is $ab$.
+  
+  \begin{proof}
+    By the M\'eziriac-B\'ezout identity 
+    $$1 = ax_0 + my_0 = bx_1 + my_1$$
+    $$1 = 1 \cdot 1 = abx_0x_1 + m( Stuff)$$
+    i.e. by the identity again $ab, m) = 1$.
+  \end{proof}
+  
+  Thus, multiplying doesn't create new factors.
+
+\end{frame}
+
+\begin{frame}{relatively prime}
+
+  Note: We used the term relatively prime. Above. It's defined how you
+  think.
+
+\end{frame}
+
+\begin{frame}{One must fall!}
+
+  If $b$ and $c$ are relatively prime, and $c | ab$, then $c|a$.
+
+\end{frame}
+
+\subsection{How addition effects GCDs}
+
+\begin{frame}{general addition}
+
+In general addition is screwy:
+
+$$(12, 2) = 2$$
+$$(12, 3) = 3$$
+$$(12, 4) = 4$$
+$$(12, 5) = 1$$
+
+\end{frame}
+
+\begin{frame}{Adding multiples}
+
+But ...
+\begin{theorem}
+  $$d = (a, b) = (a, b + ax)$$
+\end{theorem}
+
+This isn't as satisfying as the results on division/multiplication,
+but next lecture we will see it is very powerful.
+
+\end{frame}
+
+\begin{frame}{Proof Outline}
+Let,
+  $$d = (a, b) $$
+  $$g = (a, b + ax)$$
+  
+  \begin{enumerate}
+  \item Show that $d | b + ax$.
+  \item Show $g | d$.
+  \item Since $d | b + ax$, by lecture 1 $d | g$.
+  \item Conclude $d = \pm g$.
+  \item Since $d, g > 0$ $d = g$.
+  \end{enumerate}
+    
+\end{frame}
+
+\begin{frame}{Show $d | b + ax$}
+  Since $d | a$ and $d | b$ by definition, we have by the linear
+  combination property from lecture 1 that $d | b + ax$.
+\end{frame}
+
+\begin{frame}{Show $g | d$.}
+  By the  M\'eziriac-B\'ezout identity there are $x_0$ and $y_0$:
+  $$d = ax_0 + by_0$$
+  $$d = a(x_0 - xy_0) + (b + ax)y_0$$
+  Since $d$ is a linear combination of $a$ and $(b+ax)$ by the
+  definition of $g$ and the linear combination property from lecture
+  1, we have $g | d$.
+\end{frame}
+
+\end{document}
+
+
